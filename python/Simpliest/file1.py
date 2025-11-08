@@ -5,13 +5,10 @@ import sys
 from hostname import hostname, password
 
 
-# cli
-#hostname = redis://default:ewkA5yExjutxSRFLmYhJODJ9HjXBSU6F@redis-15653.c246.us-east-1-4.ec2.redns.redis-cloud.com:15653
-#?
 
 
 r = redis.Redis(
-    host=hostname, #'redis-15653.c246.us-east-1-4.ec2.redns.redis-cloud.com',
+    host=hostname, 
     port=15653,
     decode_responses=True,
     username="default",
@@ -28,7 +25,7 @@ r.set('last_page_visited', 'home')
 record = {
     "name": "PythonRu",
     "description": "Redis tutorials",
-    "website": "https://pythonru.com/"
+    "website": "https://google.com/"
 }
 #r.hset('business', record)
 #print(f"business: {r.hgetall('business')}")
