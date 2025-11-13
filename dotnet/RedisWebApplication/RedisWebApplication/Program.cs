@@ -20,6 +20,10 @@ builder.Services.AddStackExchangeRedisCache(options => {
     options.Configuration = hostname; // "localhost";
     options.InstanceName = "local";
 });
+
+builder.Services.AddSwaggerGen();
+//builder.Services.AddOpenApi();
+
 var app = builder.Build();
 
 
@@ -40,5 +44,18 @@ app.MapGet("/user/{id}", (int id, [FromServices] UserService data) =>
 //    return "User not found";
 //});
 //app.MapGet("/", () => "Hello World!");
+
+if (app.Environment.IsDevelopment())
+{
+    //app.MapOpenApi();
+    app.UseSwagger();
+    app.UseSwaggerUI();
+}
+
+app.UseHttpsRedirection();
+
+//.UseAuthorization();
+
+//app.MapControllers();
 
 app.Run();
