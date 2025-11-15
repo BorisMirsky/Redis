@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "4i8nnBr9Wc8=",
+  "dgSpecHash": "DXtfPSBs0tA=",
   "success": true,
   "projectFilePath": "C:\\Users\\Alexander\\source\\Redis\\dotnet\\RedisWebApplication\\RedisWebApplication\\RedisWebApplication.csproj",
   "expectedPackageFiles": [
@@ -24,12 +24,13 @@
     "C:\\Users\\Alexander\\.nuget\\packages\\microsoft.extensions.options\\10.0.0\\microsoft.extensions.options.10.0.0.nupkg.sha512",
     "C:\\Users\\Alexander\\.nuget\\packages\\microsoft.extensions.primitives\\10.0.0\\microsoft.extensions.primitives.10.0.0.nupkg.sha512",
     "C:\\Users\\Alexander\\.nuget\\packages\\microsoft.openapi\\2.3.0\\microsoft.openapi.2.3.0.nupkg.sha512",
+    "C:\\Users\\Alexander\\.nuget\\packages\\nredisstack\\1.1.1\\nredisstack.1.1.1.nupkg.sha512",
     "C:\\Users\\Alexander\\.nuget\\packages\\pipelines.sockets.unofficial\\2.2.8\\pipelines.sockets.unofficial.2.2.8.nupkg.sha512",
     "C:\\Users\\Alexander\\.nuget\\packages\\sqlitepclraw.bundle_e_sqlite3\\2.1.10\\sqlitepclraw.bundle_e_sqlite3.2.1.10.nupkg.sha512",
     "C:\\Users\\Alexander\\.nuget\\packages\\sqlitepclraw.core\\2.1.10\\sqlitepclraw.core.2.1.10.nupkg.sha512",
     "C:\\Users\\Alexander\\.nuget\\packages\\sqlitepclraw.lib.e_sqlite3\\2.1.10\\sqlitepclraw.lib.e_sqlite3.2.1.10.nupkg.sha512",
     "C:\\Users\\Alexander\\.nuget\\packages\\sqlitepclraw.provider.e_sqlite3\\2.1.10\\sqlitepclraw.provider.e_sqlite3.2.1.10.nupkg.sha512",
-    "C:\\Users\\Alexander\\.nuget\\packages\\stackexchange.redis\\2.7.27\\stackexchange.redis.2.7.27.nupkg.sha512",
+    "C:\\Users\\Alexander\\.nuget\\packages\\stackexchange.redis\\2.9.17\\stackexchange.redis.2.9.17.nupkg.sha512",
     "C:\\Users\\Alexander\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\10.0.1\\swashbuckle.aspnetcore.swagger.10.0.1.nupkg.sha512",
     "C:\\Users\\Alexander\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\10.0.1\\swashbuckle.aspnetcore.swaggergen.10.0.1.nupkg.sha512",
     "C:\\Users\\Alexander\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\10.0.1\\swashbuckle.aspnetcore.swaggerui.10.0.1.nupkg.sha512",

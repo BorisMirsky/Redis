@@ -3,7 +3,10 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Caching.Distributed;
 using RedisWebApplication;
 using StackExchange.Redis;
+using System.Diagnostics;
 using System.Text.Json;
+using NRedisStack;
+using NRedisStack.RedisStackCommands;
 
 
 
@@ -12,6 +15,17 @@ var builder = WebApplication.CreateBuilder(args);
 string hostname = "redis-15653.c246.us-east-1-4.ec2.redns.redis-cloud.com";
 string password = "ewkA5yExjutxSRFLmYhJODJ9HjXBSU6F";
 const string endpoint = "redis-15653.c246.us-east-1-4.ec2.redns.redis-cloud.com:15653,password=ewkA5yExjutxSRFLmYhJODJ9HjXBSU6F";
+
+ConfigurationOptions conf = new ConfigurationOptions
+{
+    EndPoints = { hostname },
+    User = "#2678700",
+    Password = password
+};
+
+ConnectionMultiplexer redis = ConnectionMultiplexer.Connect(conf);
+IDatabase db = redis.GetDatabase();
+
 
 string connection = builder.Configuration.GetConnectionString("DefaultConnection")!;
 
@@ -24,10 +38,14 @@ builder.Services.AddStackExchangeRedisCache(options => {
     //options.InstanceName = password;   // "local";
 });
 
+//string connectionString = "your-redis-cloud-host.redis.cloud:12345,password=your-redis-cloud-password";
+//ConnectionMultiplexer redis = ConnectionMultiplexer.Connect(endpoint);
+//IDatabase db_redis = redis.GetDatabase();
+
 
 //      ?!?!?!
-builder.Services.AddSingleton<IConnectionMultiplexer>(opt =>
-  ConnectionMultiplexer.Connect(builder.Configuration.GetConnectionString(endpoint)));
+//builder.Services.AddScoped<IConnectionMultiplexer>(opt =>
+//  ConnectionMultiplexer.Connect(builder.Configuration.GetConnectionString(endpoint)));
 
 
 builder.Services.AddSwaggerGen();
@@ -58,6 +76,5 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 //.UseAuthorization();
 //app.MapControllers();
-
 
 app.Run();

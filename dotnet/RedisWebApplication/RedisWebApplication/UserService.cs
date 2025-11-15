@@ -1,4 +1,6 @@
 ﻿using Microsoft.Extensions.Caching.Distributed;
+using StackExchange.Redis;
+using System.Diagnostics;
 using System.Text.Json;
 
 
@@ -10,45 +12,51 @@ namespace RedisWebApplication
         
         ApplicationContext db;
         IDistributedCache cache;
-        ILogger _logger;
+        //ConnectionMultiplexer redis1;
+        readonly IDatabase db_redis;
 
         public UserService(ApplicationContext context,
-            ILogger<UserService> logger, 
-            IDistributedCache distributedCache)
+            IDistributedCache distributedCache,
+            ConnectionMultiplexer redis)
         {
             db = context;
-            _logger = logger;
             cache = distributedCache;
+            //redis1 = redis;
+            db_redis = redis.GetDatabase();
         }
 
-
-        public User GetUser(int id)
+        public async Task<string> GetUser(int id)
         {
-            User user = null;
-            var userJson = cache.GetString(id.ToString());
-            if (string.IsNullOrEmpty(userJson) == false)
+            User? user = null;
+            // пытаемся получить данные из кэша по id
+            //var userString = await cache.GetStringAsync(id.ToString());
+            var userString = await db_redis.StringGet(id.ToString());
+            //десериализируем из строки в объект User
+            if (userString != null) user = JsonSerializer.Deserialize<User>(userString);
+            // если данные не найдены в кэше
+            if (user == null)
             {
-                user = JsonSerializer.Deserialize<User>(userJson);
-            }
-
-            if (user == null)  //не смогли получить данные из кэша
-            {
-                user = db.Users.FirstOrDefault(x => x.Id == id);
-                if (user != null) //данные в БД есть
+                // обращаемся к базе данных
+                user = await db.Users.FindAsync(id);
+                // если пользователь найден, то добавляем в кэш
+                if (user != null)
                 {
-                    cache.SetString(id.ToString(), JsonSerializer.Serialize<User>(user),
-                        new DistributedCacheEntryOptions()
-                        .SetAbsoluteExpiration(TimeSpan.FromSeconds(30)) //через 30 секунд элемент будет удален
-                        .SetSlidingExpiration(TimeSpan.FromSeconds(10)) //если в течение 10 секунд к объекту не будет обращения - он будет удален
-                        );
-                    _logger.LogInformation($"Пользователь {user.Name} помещен в кэш");
+                    Debug.WriteLine($"{user.Name} извлечен из базы данных");
+                    // сериализуем данные в строку в формате json
+                    userString = JsonSerializer.Serialize(user);
+                    // сохраняем строковое представление объекта в формате json в кэш на 2 минуты
+                    await cache.SetStringAsync(user.Id.ToString(), userString, new DistributedCacheEntryOptions
+                    {
+                        AbsoluteExpirationRelativeToNow = TimeSpan.FromMinutes(2)
+                    });
                 }
             }
             else
             {
-                _logger.LogInformation($"Пользователь {user.Name} был извлечен из кэша");
+                Debug.WriteLine($"{user.Name} извлечен из кэша");
             }
-            return user;
+            return user.Name;
         }
+
     }
 }
