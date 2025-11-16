@@ -1,0 +1,4 @@
+﻿hostname='redis-15653.c246.us-east-1-4.ec2.redns.redis-cloud.com'
+password="ewkA5yExjutxSRFLmYhJODJ9HjXBSU6F"
+port=15653
+username="default"

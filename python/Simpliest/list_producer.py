@@ -23,5 +23,7 @@ connection = redis.Redis(
 
 
 for i in range(0,10):
-	connection.lpush("listQueue", "Сообщение №" + str(random.randint(0, 100)))
+    msg = "Сообщение №" + str(random.randint(0, 100))
+    print(msg)
+    connection.lpush("listQueue", msg)
 

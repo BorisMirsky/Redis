@@ -30,7 +30,7 @@ namespace RedisWebApplication
             User? user = null;
             // пытаемся получить данные из кэша по id
             //var userString = await cache.GetStringAsync(id.ToString());
-            var userString = await db_redis.StringGet(id.ToString());
+            var userString = "";   //await db_redis.StringGet(id.ToString());
             //десериализируем из строки в объект User
             if (userString != null) user = JsonSerializer.Deserialize<User>(userString);
             // если данные не найдены в кэше
