@@ -7,19 +7,20 @@ using System.Diagnostics;
 using System.Text.Json;
 using NRedisStack;
 using NRedisStack.RedisStackCommands;
+//using RedisWebApplication;
 
 
 
 var builder = WebApplication.CreateBuilder(args);
 //15653
-string hostname = "redis-15653.c246.us-east-1-4.ec2.redns.redis-cloud.com";
-string password = "ewkA5yExjutxSRFLmYhJODJ9HjXBSU6F";
+string host = CredentialsSettings.hostname;   //"redis-15653.c246.us-east-1-4.ec2.redns.redis-cloud.com";
+string pass = CredentialsSettings.password;  //"ewkA5yExjutxSRFLmYhJODJ9HjXBSU6F";
 //const string endpoint = "redis-15653.c246.us-east-1-4.ec2.redns.redis-cloud.com:15653,password=ewkA5yExjutxSRFLmYhJODJ9HjXBSU6F";
 ConfigurationOptions conf = new ConfigurationOptions
 {
-    EndPoints = { hostname },
+    EndPoints = { host },
     User = "default",  //"#2678700",
-    Password = password
+    Password = pass
 };
 ConnectionMultiplexer redis = ConnectionMultiplexer.Connect(conf);
 IDatabase db = redis.GetDatabase();
@@ -33,7 +34,7 @@ builder.Services.AddDbContext<ApplicationContext>(options => options.UseSqlite(c
 //builder.Services.AddControllers();
 builder.Services.AddTransient<UserService>();
 builder.Services.AddStackExchangeRedisCache(options => {
-    options.Configuration = hostname;
+    options.Configuration = host;
     //options.InstanceName = password;   // "local";
 });
 
