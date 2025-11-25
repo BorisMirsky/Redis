@@ -3,10 +3,6 @@
   "WorkspaceRootPath": "C:\\Users\\Alexander\\source\\Redis\\dotnet\\RedisWebApplication\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{3E81CD39-EE98-4821-9B0B-D7161E3A2EF3}|RedisWebApplication\\RedisWebApplication.csproj|c:\\users\\alexander\\source\\redis\\dotnet\\rediswebapplication\\rediswebapplication\\credentialssettings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3E81CD39-EE98-4821-9B0B-D7161E3A2EF3}|RedisWebApplication\\RedisWebApplication.csproj|solutionrelative:rediswebapplication\\credentialssettings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{3E81CD39-EE98-4821-9B0B-D7161E3A2EF3}|RedisWebApplication\\RedisWebApplication.csproj|c:\\users\\alexander\\source\\redis\\dotnet\\rediswebapplication\\rediswebapplication\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{3E81CD39-EE98-4821-9B0B-D7161E3A2EF3}|RedisWebApplication\\RedisWebApplication.csproj|solutionrelative:rediswebapplication\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -15,8 +11,12 @@
       "RelativeMoniker": "D:0:0:{3E81CD39-EE98-4821-9B0B-D7161E3A2EF3}|RedisWebApplication\\RedisWebApplication.csproj|solutionrelative:rediswebapplication\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{3E81CD39-EE98-4821-9B0B-D7161E3A2EF3}|RedisWebApplication\\RedisWebApplication.csproj|c:\\users\\alexander\\source\\redis\\dotnet\\rediswebapplication\\rediswebapplication\\controllers\\rediscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3E81CD39-EE98-4821-9B0B-D7161E3A2EF3}|RedisWebApplication\\RedisWebApplication.csproj|solutionrelative:rediswebapplication\\controllers\\rediscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{3E81CD39-EE98-4821-9B0B-D7161E3A2EF3}|RedisWebApplication\\RedisWebApplication.csproj|c:\\users\\alexander\\source\\redis\\dotnet\\rediswebapplication\\rediswebapplication\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{3E81CD39-EE98-4821-9B0B-D7161E3A2EF3}|RedisWebApplication\\RedisWebApplication.csproj|solutionrelative:rediswebapplication\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3E81CD39-EE98-4821-9B0B-D7161E3A2EF3}|RedisWebApplication\\RedisWebApplication.csproj|c:\\users\\alexander\\source\\redis\\dotnet\\rediswebapplication\\rediswebapplication\\credentialssettings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3E81CD39-EE98-4821-9B0B-D7161E3A2EF3}|RedisWebApplication\\RedisWebApplication.csproj|solutionrelative:rediswebapplication\\credentialssettings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,7 +26,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 8,
           "Children": [
             {
               "$type": "Bookmark",
@@ -35,36 +35,6 @@
             {
               "$type": "Bookmark",
               "Name": "ST:1:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "CredentialsSettings.cs",
-              "DocumentMoniker": "C:\\Users\\Alexander\\source\\Redis\\dotnet\\RedisWebApplication\\RedisWebApplication\\CredentialsSettings.cs",
-              "RelativeDocumentMoniker": "RedisWebApplication\\CredentialsSettings.cs",
-              "ToolTip": "C:\\Users\\Alexander\\source\\Redis\\dotnet\\RedisWebApplication\\RedisWebApplication\\CredentialsSettings.cs",
-              "RelativeToolTip": "RedisWebApplication\\CredentialsSettings.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-18T17:14:17.252Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "RedisController.cs",
-              "DocumentMoniker": "C:\\Users\\Alexander\\source\\Redis\\dotnet\\RedisWebApplication\\RedisWebApplication\\Controllers\\RedisController.cs",
-              "RelativeDocumentMoniker": "RedisWebApplication\\Controllers\\RedisController.cs",
-              "ToolTip": "C:\\Users\\Alexander\\source\\Redis\\dotnet\\RedisWebApplication\\RedisWebApplication\\Controllers\\RedisController.cs",
-              "RelativeToolTip": "RedisWebApplication\\Controllers\\RedisController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-18T17:11:06.21Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:1:0:{d212f56b-c48a-434c-a121-1c5d80b59b9f}"
             },
             {
               "$type": "Bookmark",
@@ -81,25 +51,51 @@
             {
               "$type": "Document",
               "DocumentIndex": 2,
+              "Title": "launchSettings.json",
+              "DocumentMoniker": "C:\\Users\\Alexander\\source\\Redis\\dotnet\\RedisWebApplication\\RedisWebApplication\\Properties\\launchSettings.json",
+              "RelativeDocumentMoniker": "RedisWebApplication\\Properties\\launchSettings.json",
+              "ToolTip": "C:\\Users\\Alexander\\source\\Redis\\dotnet\\RedisWebApplication\\RedisWebApplication\\Properties\\launchSettings.json",
+              "RelativeToolTip": "RedisWebApplication\\Properties\\launchSettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-11-25T16:05:36.306Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "CredentialsSettings.cs",
+              "DocumentMoniker": "C:\\Users\\Alexander\\source\\Redis\\dotnet\\RedisWebApplication\\RedisWebApplication\\CredentialsSettings.cs",
+              "RelativeDocumentMoniker": "RedisWebApplication\\CredentialsSettings.cs",
+              "ToolTip": "C:\\Users\\Alexander\\source\\Redis\\dotnet\\RedisWebApplication\\RedisWebApplication\\CredentialsSettings.cs",
+              "RelativeToolTip": "RedisWebApplication\\CredentialsSettings.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAmAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-18T17:14:17.252Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "UserService.cs",
               "DocumentMoniker": "C:\\Users\\Alexander\\source\\Redis\\dotnet\\RedisWebApplication\\RedisWebApplication\\UserService.cs",
               "RelativeDocumentMoniker": "RedisWebApplication\\UserService.cs",
               "ToolTip": "C:\\Users\\Alexander\\source\\Redis\\dotnet\\RedisWebApplication\\RedisWebApplication\\UserService.cs",
               "RelativeToolTip": "RedisWebApplication\\UserService.cs",
-              "ViewState": "AgIAAB8AAAAAAAAAAAA7wCAAAAAeAAAAAAAAAA==",
+              "ViewState": "AgIAABQAAAAAAAAAAAAcwBgAAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-11-12T07:35:56.725Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\Alexander\\source\\Redis\\dotnet\\RedisWebApplication\\RedisWebApplication\\Program.cs",
               "RelativeDocumentMoniker": "RedisWebApplication\\Program.cs",
               "ToolTip": "C:\\Users\\Alexander\\source\\Redis\\dotnet\\RedisWebApplication\\RedisWebApplication\\Program.cs",
               "RelativeToolTip": "RedisWebApplication\\Program.cs",
-              "ViewState": "AgIAAA8AAAAAAAAAAAAAACQAAAAgAAAAAAAAAA==",
+              "ViewState": "AgIAADMAAAAAAAAAAAAqwBYAAAAEAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-11-11T17:50:02.112Z",
               "EditorCaption": ""

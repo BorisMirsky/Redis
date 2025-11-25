@@ -12,25 +12,19 @@ namespace RedisWebApplication
         
         ApplicationContext db;
         IDistributedCache cache;
-        //ConnectionMultiplexer redis1;
-        readonly IDatabase db_redis;
 
         public UserService(ApplicationContext context,
-            IDistributedCache distributedCache,
-            ConnectionMultiplexer redis)
+            IDistributedCache distributedCache)
         {
             db = context;
             cache = distributedCache;
-            //redis1 = redis;
-            db_redis = redis.GetDatabase();
         }
 
-        public async Task<string> GetUser(int id)
+        public async Task<User?> GetUser(int id)
         {
             User? user = null;
             // пытаемся получить данные из кэша по id
-            //var userString = await cache.GetStringAsync(id.ToString());
-            var userString = "";   //await db_redis.StringGet(id.ToString());
+            var userString = await cache.GetStringAsync(id.ToString());
             //десериализируем из строки в объект User
             if (userString != null) user = JsonSerializer.Deserialize<User>(userString);
             // если данные не найдены в кэше
@@ -55,7 +49,7 @@ namespace RedisWebApplication
             {
                 Debug.WriteLine($"{user.Name} извлечен из кэша");
             }
-            return user.Name;
+            return user;
         }
 
     }

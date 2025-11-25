@@ -7,68 +7,61 @@ using System.Diagnostics;
 using System.Text.Json;
 using NRedisStack;
 using NRedisStack.RedisStackCommands;
-//using RedisWebApplication;
 
 
 
 var builder = WebApplication.CreateBuilder(args);
 //15653
-string host = CredentialsSettings.hostname;   //"redis-15653.c246.us-east-1-4.ec2.redns.redis-cloud.com";
-string pass = CredentialsSettings.password;  //"ewkA5yExjutxSRFLmYhJODJ9HjXBSU6F";
-//const string endpoint = "redis-15653.c246.us-east-1-4.ec2.redns.redis-cloud.com:15653,password=ewkA5yExjutxSRFLmYhJODJ9HjXBSU6F";
-ConfigurationOptions conf = new ConfigurationOptions
-{
-    EndPoints = { host },
-    User = "default",  //"#2678700",
-    Password = pass
-};
-ConnectionMultiplexer redis = ConnectionMultiplexer.Connect(conf);
-IDatabase db = redis.GetDatabase();
-db.StringSet("foo", "bar");
-Debug.WriteLine(db.StringGet("foo"));
+string host = CredentialsSettings.hostname;   
+string pass = CredentialsSettings.password;  
 
-
+//ConfigurationOptions conf = new ConfigurationOptions
+//{
+//    EndPoints = { host },
+//    User = "default",  //"#2678700",
+//    Password = pass
+//};
 
 string connection = builder.Configuration.GetConnectionString("DefaultConnection")!;
 builder.Services.AddDbContext<ApplicationContext>(options => options.UseSqlite(connection));
-//builder.Services.AddControllers();
 builder.Services.AddTransient<UserService>();
 builder.Services.AddStackExchangeRedisCache(options => {
-    options.Configuration = host;
-    //options.InstanceName = password;   // "local";
+    options.Configuration = "localhost";   //host;
+    options.InstanceName = "local";   // pass;   // "local";
 });
 
-//string connectionString = "your-redis-cloud-host.redis.cloud:12345,password=your-redis-cloud-password";
-//ConnectionMultiplexer redis = ConnectionMultiplexer.Connect(endpoint);
-//IDatabase db_redis = redis.GetDatabase();
-
-
-//      ?!?!?!
-//builder.Services.AddScoped<IConnectionMultiplexer>(opt =>
-//  ConnectionMultiplexer.Connect(builder.Configuration.GetConnectionString(endpoint)));
-
-
+builder.Services.AddCors(options =>
+{
+    options.AddDefaultPolicy(policy =>
+    {
+        policy.WithOrigins("http://localhost:3000")
+            .AllowAnyHeader()
+            .AllowAnyMethod()
+            .AllowCredentials();
+    });
+});
 builder.Services.AddSwaggerGen();
-//builder.Services.AddOpenApi();
+
+
+
 var app = builder.Build();
-//app.MapGet("/", () => "Hello ASP.NET Core Cache!");
-//app.MapGet("/user/{id}", (int id, [FromServices] UserService data) =>
-//{
-//    var _user = data.GetUser(id);
-//    if (_user == null)
-//    {
-//        return Results.Content($"Пользователь не найден");
-//    }
-//    return Results.Json(_user);
-//});
+app.MapGet("/", () => "Hello ASP.NET Core Cache!");
+app.MapGet("/user/{id}", (int id, [FromServices] UserService data) =>
+{
+    var _user = data.GetUser(id);
+    if (_user == null)
+    {
+        Debug.WriteLine("Пользователь не найден");
+        return Results.Content($"Пользователь не найден");
+    }
+    Debug.WriteLine(_user);
+    return Results.Json(_user);
+});
 
 if (app.Environment.IsDevelopment())
 {
-    //app.MapOpenApi();
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-app.UseHttpsRedirection();
-//.UseAuthorization();
-//app.MapControllers();
+
 app.Run();
