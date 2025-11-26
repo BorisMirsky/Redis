@@ -11,24 +11,35 @@ using NRedisStack.RedisStackCommands;
 
 
 var builder = WebApplication.CreateBuilder(args);
-//15653
 string host = CredentialsSettings.hostname;   
-string pass = CredentialsSettings.password;  
+string password = CredentialsSettings.password;
 
-//ConfigurationOptions conf = new ConfigurationOptions
-//{
-//    EndPoints = { host },
-//    User = "default",  //"#2678700",
-//    Password = pass
-//};
+ConfigurationOptions conf = new ConfigurationOptions
+{
+    EndPoints = { { host, 15653 } },
+    User = "default",     //"#2678700",
+    Password = password,
+    //Ssl = true,
+    //SslProtocols= System.Security.Authentication.SslProtocols.Tls12
+};
+ConnectionMultiplexer redis = ConnectionMultiplexer.Connect(conf);
+IDatabase cacheDb = redis.GetDatabase();   // db
+
 
 string connection = builder.Configuration.GetConnectionString("DefaultConnection")!;
 builder.Services.AddDbContext<ApplicationContext>(options => options.UseSqlite(connection));
 builder.Services.AddTransient<UserService>();
 builder.Services.AddStackExchangeRedisCache(options => {
-    options.Configuration = "localhost";   //host;
-    options.InstanceName = "local";   // pass;   // "local";
+    options.Configuration = host;
+    options.InstanceName = "default";  // "2678700";   
 });
+
+builder.Services.AddScoped<IDatabase>();
+//builder.Services.AddScoped<IDatabase>(cfg =>
+//{
+//    IConnectionMultiplexer multiplexer = ConnectionMultiplexer.Connect(conf);
+//    return multiplexer.GetDatabase();
+//});
 
 builder.Services.AddCors(options =>
 {

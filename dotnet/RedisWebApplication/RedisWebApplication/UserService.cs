@@ -11,20 +11,22 @@ namespace RedisWebApplication
     {
         
         ApplicationContext db;
-        IDistributedCache cache;
+        IDistributedCache cache1;
+        IDatabase cache2;          //private readonly 
 
         public UserService(ApplicationContext context,
-            IDistributedCache distributedCache)
+            IDistributedCache distributedCache, IDatabase cache)
         {
             db = context;
-            cache = distributedCache;
+            cache1 = distributedCache;
+            cache2 = cache;
         }
 
         public async Task<User?> GetUser(int id)
         {
             User? user = null;
             // пытаемся получить данные из кэша по id
-            var userString = await cache.GetStringAsync(id.ToString());
+            string? userString = await cache2.GetStringAsync(id.ToString());
             //десериализируем из строки в объект User
             if (userString != null) user = JsonSerializer.Deserialize<User>(userString);
             // если данные не найдены в кэше
