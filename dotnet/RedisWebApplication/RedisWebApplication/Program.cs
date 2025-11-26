@@ -22,8 +22,9 @@ ConfigurationOptions conf = new ConfigurationOptions
     //Ssl = true,
     //SslProtocols= System.Security.Authentication.SslProtocols.Tls12
 };
+
 ConnectionMultiplexer redis = ConnectionMultiplexer.Connect(conf);
-IDatabase cacheDb = redis.GetDatabase();   // db
+IDatabase cacheDb = redis.GetDatabase(); 
 
 
 string connection = builder.Configuration.GetConnectionString("DefaultConnection")!;
@@ -31,15 +32,14 @@ builder.Services.AddDbContext<ApplicationContext>(options => options.UseSqlite(c
 builder.Services.AddTransient<UserService>();
 builder.Services.AddStackExchangeRedisCache(options => {
     options.Configuration = host;
-    options.InstanceName = "default";  // "2678700";   
+    options.InstanceName = "default"; 
 });
 
-builder.Services.AddScoped<IDatabase>();
-//builder.Services.AddScoped<IDatabase>(cfg =>
-//{
-//    IConnectionMultiplexer multiplexer = ConnectionMultiplexer.Connect(conf);
-//    return multiplexer.GetDatabase();
-//});
+
+builder.Services.AddSingleton<IConnectionMultiplexer>(
+        ConnectionMultiplexer.Connect(conf));
+builder.Services.AddSingleton<ICacheService, RedisCacheService>();
+
 
 builder.Services.AddCors(options =>
 {
