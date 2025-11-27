@@ -1,9 +1,10 @@
-﻿using Microsoft.Extensions.Caching.Distributed;
+﻿using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using Microsoft.Extensions.Caching.Distributed;
+using NRedisStack;
+using NRedisStack.RedisStackCommands;
 using StackExchange.Redis;
 using System.Diagnostics;
 using System.Text.Json;
-using NRedisStack;
-using NRedisStack.RedisStackCommands;
 
 
 
@@ -14,21 +15,28 @@ namespace RedisWebApplication
     {
 
         private readonly ApplicationContext db;
-        private readonly ICacheService _cache;
+        private readonly IDatabase _redis;
+        private readonly IDistributedCache cache;
 
-        public UserService(ApplicationContext context, ICacheService cache)
+        public UserService(
+            ApplicationContext context, 
+            IConnectionMultiplexer redis,
+            IDistributedCache distributedCache)
         {
             db = context;
-            _cache = cache;
+            _redis = redis.GetDatabase();
+            cache = distributedCache;
         }
-
 
         public async Task<User?> GetUser(int id)
         {
+            User? user1 = await db.Users.FindAsync(1);
             User? user = null;
             // пытаемся получить данные из кэша по id
-            string? userString = await _cache.GetAsync(id.ToString());
+            //string? userString = await _redis.StringGetAsync(id.ToString());
+            string? userString = await cache.GetStringAsync(id.ToString());
             //десериализируем из строки в объект User
+            //User? user1 = await db.Users.FindAsync(1);
             if (userString != null) user = JsonSerializer.Deserialize<User>(userString);
             // если данные не найдены в кэше
             if (user == null)
@@ -42,11 +50,7 @@ namespace RedisWebApplication
                     // сериализуем данные в строку в формате json
                     userString = JsonSerializer.Serialize(user);
                     // сохраняем строковое представление объекта в формате json в кэш на 2 минуты
-                    await _cache.SetAsync(user.Id.ToString(), userString);
-                    //, new DistributedCacheEntryOptions
-                    //      {
-                    //          AbsoluteExpirationRelativeToNow = TimeSpan.FromMinutes(2)
-                    //      });
+                    await _redis.StringSetAsync(user.Id.ToString(), userString, TimeSpan.FromMinutes(30));
                 }
             }
             else

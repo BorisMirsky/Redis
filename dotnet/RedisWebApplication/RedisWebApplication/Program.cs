@@ -24,7 +24,7 @@ ConfigurationOptions conf = new ConfigurationOptions
 };
 
 ConnectionMultiplexer redis = ConnectionMultiplexer.Connect(conf);
-IDatabase cacheDb = redis.GetDatabase(); 
+//IDatabase cacheDb = redis.GetDatabase(); 
 
 
 string connection = builder.Configuration.GetConnectionString("DefaultConnection")!;
@@ -34,11 +34,7 @@ builder.Services.AddStackExchangeRedisCache(options => {
     options.Configuration = host;
     options.InstanceName = "default"; 
 });
-
-
-builder.Services.AddSingleton<IConnectionMultiplexer>(
-        ConnectionMultiplexer.Connect(conf));
-builder.Services.AddSingleton<ICacheService, RedisCacheService>();
+builder.Services.AddSingleton<IConnectionMultiplexer>(ConnectionMultiplexer.Connect(conf));
 
 
 builder.Services.AddCors(options =>
@@ -65,7 +61,16 @@ app.MapGet("/user/{id}", (int id, [FromServices] UserService data) =>
         Debug.WriteLine("Пользователь не найден");
         return Results.Content($"Пользователь не найден");
     }
+    var x = Results.Json(_user);
+    Debug.WriteLine("");
+    Debug.WriteLine("");
+    Debug.WriteLine("----------------------------------");
+    Debug.WriteLine(x);
     Debug.WriteLine(_user);
+    Debug.WriteLine("------------------------------------");
+    Debug.WriteLine("");
+    Debug.WriteLine("");
+    //return Results.Json(_user);
     return Results.Json(_user);
 });
 
