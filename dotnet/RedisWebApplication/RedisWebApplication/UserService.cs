@@ -30,7 +30,7 @@ namespace RedisWebApplication
 
         public async Task<User?> GetUser(int id)
         {
-            User? user1 = await db.Users.FindAsync(1);
+            //User? user1 = await db.Users.FindAsync(1);
             User? user = null;
             // пытаемся получить данные из кэша по id
             //string? userString = await _redis.StringGetAsync(id.ToString());
