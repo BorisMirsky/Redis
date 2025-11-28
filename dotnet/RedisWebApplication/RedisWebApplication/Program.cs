@@ -31,6 +31,7 @@ ConnectionMultiplexer redis = ConnectionMultiplexer.Connect(conf);
 
 string connection = builder.Configuration.GetConnectionString("DefaultConnection")!;
 builder.Services.AddDbContext<ApplicationContext>(options => options.UseSqlite(connection));
+
 builder.Services.AddTransient<UserService>();
 builder.Services.AddStackExchangeRedisCache(options => {
     options.Configuration = host;
@@ -55,16 +56,7 @@ builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 app.MapGet("/", () => "Hello ASP.NET Core Cache!");
-//app.MapGet("/user/{id}", (int id, [FromServices] UserService data) =>
-//{
-//    var _user = data.GetUser(id);
-//    if (_user == null)
-//    {
-//        Debug.WriteLine("Пользователь не найден");
-//        return Results.Content($"Пользователь не найден");
-//    }
-//    return Results.Json(_user);
-//});
+
 app.MapGet("/user/{id}", async (int id, UserService userService) =>
 {
     User? user = await userService.GetUser(id);

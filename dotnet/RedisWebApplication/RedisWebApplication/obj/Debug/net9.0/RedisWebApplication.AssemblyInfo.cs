@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("RedisWebApplication")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9113d102996ea3a472eff70b5da540dd89cdcbfb")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a8a93952827c833cffff48f51962a51e4c99b387")]
 [assembly: System.Reflection.AssemblyProductAttribute("RedisWebApplication")]
 [assembly: System.Reflection.AssemblyTitleAttribute("RedisWebApplication")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
