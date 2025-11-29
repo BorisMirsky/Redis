@@ -1,33 +1,23 @@
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Caching.Distributed;
 using RedisWebApplication;
 using StackExchange.Redis;
-using System.Diagnostics;
-using System.Text.Json;
 using NRedisStack;
 using NRedisStack.RedisStackCommands;
-
+using Microsoft.Extensions.Caching.Distributed;
 
 
 var builder = WebApplication.CreateBuilder(args);
-string host = CredentialsSettings.hostname1;   
+string host = CredentialsSettings.hostname;   
 string password = CredentialsSettings.password;
 
 ConfigurationOptions conf = new ConfigurationOptions
 {
-    //EndPoints = { { host, 15653 } },
     EndPoints = { host },
-    User = "default",     //"#2678700",
+    User = "default",   
     Password = password,
-    //Ssl = true,
-    //SslProtocols= System.Security.Authentication.SslProtocols.Tls12
 };
 
 ConnectionMultiplexer redis = ConnectionMultiplexer.Connect(conf);
-//IDatabase cacheDb = redis.GetDatabase(); 
-
-//redis-15653.c246.us-east-1-4.ec2.cloud.redislabs.com:15653
 
 string connection = builder.Configuration.GetConnectionString("DefaultConnection")!;
 builder.Services.AddDbContext<ApplicationContext>(options => options.UseSqlite(connection));
