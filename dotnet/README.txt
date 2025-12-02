@@ -5,7 +5,7 @@ Swagger:   http://localhost:5138/swagger/index.html
 Browser:   https://localhost:7200
 
 
-CredentialsSettings скрыты (.gitignore)
+CredentialsSettings занесены в gitignore(скрыты)
 
 Есть 2 подхода в работе с Redis: 
 - Если Redis используется просто как кеш то IDistributedCache.
