@@ -6,7 +6,7 @@
   'cd Redis\python\my_env\Scripts'
   'activate'
 
-- Запустить сервер Fast API
+- Запустить сервер Fast API                   #  нужен не во всех примерах
   'cd Redis\python\src'
   'uvicorn producer:app --reload'              # 'producer' - в зависимости от запускаемого файла
 

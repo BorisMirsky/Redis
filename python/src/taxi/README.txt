@@ -35,6 +35,6 @@ Consumer.py
 
 
 TODO
-Не понял, как смотреть на данные в самой БД https://cloud.redis.io/#/databases
+Понять, как смотреть на данные в самой БД https://cloud.redis.io/#/databases
 
 

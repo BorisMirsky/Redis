@@ -2,7 +2,7 @@
 
 
 Swagger:   http://localhost:5138/swagger/index.html
-Browser:   https://localhost:7200
+Browser:   https://localhost:7200                        // использование бессмысленно
 
 
 CredentialsSettings

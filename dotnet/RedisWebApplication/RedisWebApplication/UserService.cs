@@ -31,7 +31,7 @@ namespace RedisWebApplication
         {
             User? user = null;
             // есть данные в кэше?
-             string? userString = await _redis.StringGetAsync(id.ToString());
+            string? userString = await _redis.StringGetAsync(id.ToString());
             // десериализируем из строки в объект User
             if (userString != null) user = JsonSerializer.Deserialize<User>(userString);
             // нет данных в кэше
